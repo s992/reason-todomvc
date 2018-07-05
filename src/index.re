@@ -1,11 +1,4 @@
-[%bs.raw {|require('./index.css')|}];
+[%bs.raw {|require('todomvc-common/base.css')|}];
+[%bs.raw {|require('todomvc-app-css/index.css')|}];
 
-[@bs.module "./registerServiceWorker"]
-external register_service_worker : unit => unit = "default";
-
-ReactDOMRe.renderToElementWithId(
-  <App message="Welcome to React and Reason" />,
-  "root",
-);
-
-register_service_worker();
+ReactDOMRe.renderToElementWithId(<App />, "root");
