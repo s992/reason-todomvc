@@ -12,13 +12,10 @@ let make = (~onSave, _children) => {
   reducer: (action, state: state) =>
     switch (action) {
     | ValueChanged(newValue) => ReasonReact.Update({value: newValue})
-    | KeyPressed(key) =>
-      switch (key) {
-      | 13 =>
-        onSave(state.value);
-        ReasonReact.Update({value: ""});
-      | _ => ReasonReact.NoUpdate
-      }
+    | KeyPressed(13) =>
+      onSave(state.value);
+      ReasonReact.Update({value: ""});
+    | KeyPressed(_) => ReasonReact.NoUpdate
     },
   render: self =>
     <header className="header">

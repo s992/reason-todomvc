@@ -1,6 +1,6 @@
 let component = ReasonReact.statelessComponent("Footer");
 
-let make = (~todoCount, _children) => {
+let make = (~todoCount, ~activeRoute, _children) => {
   ...component,
   render: _self =>
     <footer className="footer">
@@ -14,9 +14,17 @@ let make = (~todoCount, _children) => {
         )
       </span>
       <ul className="filters">
-        <li> <a className="selected" href="#/"> (ReasonReact.string("All")) </a> </li>
-        <li> <a href="#/active"> (ReasonReact.string("Active")) </a> </li>
-        <li> <a href="#/completed"> (ReasonReact.string("Completed")) </a> </li>
+        <li> <a className=(activeRoute == "/" ? "selected" : "") href="#/"> (ReasonReact.string("All")) </a> </li>
+        <li>
+          <a className=(activeRoute == "/active" ? "selected" : "") href="#/active">
+            (ReasonReact.string("Active"))
+          </a>
+        </li>
+        <li>
+          <a className=(activeRoute == "/completed" ? "selected" : "") href="#/completed">
+            (ReasonReact.string("Completed"))
+          </a>
+        </li>
       </ul>
     </footer>,
 };
